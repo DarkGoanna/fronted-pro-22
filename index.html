@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hw-22</title>
+</head>
+<body>
+    <script>
+        function deployWord(string, counter = 1, result = '') {
+            result += string[string.length - counter];
+            return string.length > counter ? deployWord(string, ++counter, result) : result;
+        }
+
+        //-------------------------------------------------
+
+        function searchPosition (value, array, counter = Math.floor(array.length/2), left = 0, right = array.length) {
+            if (value, array) {
+                // если массив из 1 числа то сравниваем с этим числом или считаем средину
+                let middle = array.length > 1 ? Math.floor((left + right) / 2) : 0;
+                if (value === array[middle]) {
+                    return middle;
+                } else if ( counter === 0) { // если счетчик подошел к концу то такого чила в массиве нет
+                    return -1;
+                } else if (value < array[middle]) {
+                    right = --middle;
+                    counter = Math.floor(counter /= 2); 
+                    return searchPosition(value, array, counter, left, right);
+                } else if (value > array[middle]) {
+                    left = ++middle;
+                    counter = Math.floor(counter /= 2);
+                    return searchPosition(value, array, counter, left, right);
+                }
+            }
+        }   
+    </script>
+</body>
+</html>
